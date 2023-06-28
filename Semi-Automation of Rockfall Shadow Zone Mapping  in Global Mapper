@@ -1,43 +1,43 @@
 //INSTRUCTIONS ON HOW TO USE THIS. LOAD YOUR ORTHOPHOTO AND DEM FILE ONTO GLOBAL MAPPER. SELECT THE CREATE
 //POINT/TEXT FEATURE AND CREATE ONE POINT FEATURE AT THE POINT OF INTEREST. WHEN CREATING THE FIRST POINT FEATURE A
-//POP-UP BOX WILL APPEAR WHERE YOU HAVE TO NAME THE LAYER AS “THE CHOOSEN ONES”, SPECIFY THE STYLE OF THE POINT AS
+//POP-UP BOX WILL APPEAR WHERE YOU HAVE TO NAME THE LAYER AS “THE CHOSEN ONES”, SPECIFY THE STYLE OF THE POINT AS
 //YOU WANT (E.G, ORANGE DOT) AND, MOST IMPORTANTLY, TICK THE BOX NEAR “AUTOMATICALLY APPLY THESE SETTINGS TO NEW
 //FEATURES OF THE SAME TYPE” THIS WILL SAVE THE SETTINGS FOR THIS LAYER AND WILL ALLOW YOU TO CREATE MULTIPLE POINT
 //FEATURES AT MULTIPLE POINT OF INTERESTS EASILY WITHOUT THE POP-UP BOX POPPING UP.
 // Use the orthophoto or (DEM RECLASSIFIED if generated from the code in APPENDIX B) to identify the point of interests
 // Calculating elevation and slope values at all the points that were created.
 
-EDIT_VECTOR FILENAME="THE CHOOSEN ONES" CALC_ELEV_SLOPE_STATS  IGNORE_LINE_VERTICES
+EDIT_VECTOR FILENAME="THE CHOSEN ONES" CALC_ELEV_SLOPE_STATS  IGNORE_LINE_VERTICES
 
 // Copying the slope direction values created from previous command to a new attribute named as SDN which stands for “Slope Direction Numerical”. Important
 //to note that for this DEM when slope stats are calculated the slope direction attribute is named as SLOPE_DIR and this might differ for another DEM hence you
 //may face an error for this and may have to edit the "SLOPE_DIR" in the “ATTR_TO_COPY” parameter.
 
-EDIT_VECTOR FILENAME="THE CHOOSEN ONES" ATTR_TO_COPY="SDN=SLOPE_DIR"
+EDIT_VECTOR FILENAME="THE CHOSEN ONES" ATTR_TO_COPY="SDN=SLOPE_DIR"
 
 // Removing non-numerical values from the SDN attribute (this code is removing the non-numerical values based on what I saw are being generated). You may
 //have to add another line of code if any non-numerical values are not removed which can simply be done by copy pasting one line of the code below and
 //changing the following part "SDN=*Input the non numerical value*="
 
-EDIT_VECTOR FILENAME="THE CHOOSEN ONES" ATTR_REPLACE_STR="SDN=(="
-EDIT_VECTOR FILENAME="THE CHOOSEN ONES" ATTR_REPLACE_STR="SDN=)="
-EDIT_VECTOR FILENAME="THE CHOOSEN ONES" ATTR_REPLACE_STR="SDN= ="
-EDIT_VECTOR FILENAME="THE CHOOSEN ONES" ATTR_REPLACE_STR="SDN=°="
-EDIT_VECTOR FILENAME="THE CHOOSEN ONES" ATTR_REPLACE_STR="SDN=N="
-EDIT_VECTOR FILENAME="THE CHOOSEN ONES" ATTR_REPLACE_STR="SDN=S="
-EDIT_VECTOR FILENAME="THE CHOOSEN ONES" ATTR_REPLACE_STR="SDN=W="
-EDIT_VECTOR FILENAME="THE CHOOSEN ONES" ATTR_REPLACE_STR="SDN=E="
+EDIT_VECTOR FILENAME="THE CHOSEN ONES" ATTR_REPLACE_STR="SDN=(="
+EDIT_VECTOR FILENAME="THE CHOSEN ONES" ATTR_REPLACE_STR="SDN=)="
+EDIT_VECTOR FILENAME="THE CHOSEN ONES" ATTR_REPLACE_STR="SDN= ="
+EDIT_VECTOR FILENAME="THE CHOSEN ONES" ATTR_REPLACE_STR="SDN=°="
+EDIT_VECTOR FILENAME="THE CHOSEN ONES" ATTR_REPLACE_STR="SDN=N="
+EDIT_VECTOR FILENAME="THE CHOSEN ONES" ATTR_REPLACE_STR="SDN=S="
+EDIT_VECTOR FILENAME="THE CHOSEN ONES" ATTR_REPLACE_STR="SDN=W="
+EDIT_VECTOR FILENAME="THE CHOSEN ONES" ATTR_REPLACE_STR="SDN=E="
 
 // “CALC_ATTR_FORMULA” command allows carrying out calculation on attributes. In this case I am creating a new attribute called "Start Angle" (which is
 //going to be used as an input for the viewshed analysis) using the SDN attribute. I want the start angle of the viewshed analysis to be less than 30 degrees than the
 //slope direction at the point feature. If you do not wish to use 30 then simply just replace 30 with number you want in the “FORMULA” parameter.
 
-CALC_ATTR_FORMULA FILENAME="THE CHOOSEN ONES" NEW_ATTR="START ANGLE" CALC_MODE="NUMERIC" FORMULA=IF(SDN-30<0,SDN-30+360,SDN-30)
+CALC_ATTR_FORMULA FILENAME="THE CHOSEN ONES" NEW_ATTR="START ANGLE" CALC_MODE="NUMERIC" FORMULA=IF(SDN-30<0,SDN-30+360,SDN-30)
 
 // Splitting the layer by the value of the SDN attribute so that we can run a loop. Important to note that, all points with same SDN value will be in one layer and
 //will also have the same start angle as start angle is calculated based on SDN value 
 
-SPLIT_LAYER FILENAME="THE CHOOSEN ONES" SPLIT_BY_ATTR="SDN" LAYER_DESC_ATTR_ONLY
+SPLIT_LAYER FILENAME="THE CHOSEN ONES" SPLIT_BY_ATTR="SDN" LAYER_DESC_ATTR_ONLY
 
 // Running a loop using a variable loop. %Counter% is a predefined variable that counts which loop step is ongoing and we are using it to run the view shed analysis
 //on the layers created in the previous command. All the layers created are based on the SDN values which are basically numbers. So, we are using the counter
