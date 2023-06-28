@@ -1,4 +1,4 @@
-<h1 align="center">Automation-of-Rockfall-Shadow-Zone-Mapping</h1>
+<h1 align="center">Automation of Rockfall Shadow Zone Mapping</h1>
 
 This is still a work in progress. I will be updating the instructions and comments for this tool, hopefully by the end of June 2023.
 
