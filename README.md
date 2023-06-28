@@ -1,4 +1,5 @@
 <h1 align="center">Automation of Rockfall Shadow Zone Mapping</h1>
+<p align = "center"><a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=040E13&center=true&width=435&lines=Replace+This" alt="Typing SVG" /></a><p>
 
 This is still a work in progress. I will be updating the instructions and comments for this tool, hopefully by the end of June 2023.
 
