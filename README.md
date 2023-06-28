@@ -3,7 +3,7 @@
 
 I will be improving the instructions (e.g. spelling mistakes) for this tool as I get time.
 
-Please read the "Tool or Script Summary" PDF before using. Do not copy the code from the PDF as I will be updating things in the notepad files first.
+Please read the "Tool or Script Summary" PDF before using. Do not copy the code from the PDF as I will be updating things in the notepad files first. Hence, use the notepad files to take the code.
 
 It is recommended to use the semi-automation script due to the limitations stated in the "Tool or Script Summary" PDF for full automation. 
 
