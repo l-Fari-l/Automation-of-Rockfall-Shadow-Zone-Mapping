@@ -12,5 +12,3 @@ The full automation script requires an additional file which I have not uploaded
 I will be uploading a Rockfall Hazard and Assessment Report of Highway 3 and Eagle RV Park & Campground in Keremeos soon. It is currently under review.
 
 If you have any suggestions, questions, or problems, do let me know!
-
-If you wish to contact me feel free to email me at farooq_qazi@hotmail.com
